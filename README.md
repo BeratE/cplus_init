@@ -1,8 +1,9 @@
 # Project
-C++ Startet Template
+C++ Starter Template
+Provides GLFW example code.
 
 ## Dependencies
-None
+* GLFW
 
 ## License
 Published under the MIT License.

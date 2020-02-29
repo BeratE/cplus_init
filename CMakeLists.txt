@@ -9,23 +9,29 @@ set(CMAKE_BUILD_TYPE Debug)
 set(SRC_DIR "${CMAKE_SOURCE_DIR}/src")     # Source Files
 set(BIN_DIR "${CMAKE_SOURCE_DIR}/bin")     # Binaries
 set(LIB_DIR "${CMAKE_SOURCE_DIR}/lib")     # Static libraries
-set(INC_DIR "${CMAKE_SOURCE_DIR}/include") # Addition include
+set(INC_DIR "${CMAKE_SOURCE_DIR}/include") # Additional include
+
+set (INCS ${INC_DIR}) # Include directories for compiling
+set (LIBS glfw GL)    # Libraries to link target against
+
 
 # Configuration file
 configure_file (
   "${CMAKE_SOURCE_DIR}/cmake/config.hpp.in"
   "${SRC_DIR}/config.hpp")
 
+
 # External dependencies
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
-#find_package(OpenGL REQUIRED)
-#find_package(SDL2 REQUIRED)
+find_package(OpenGL REQUIRED)
+
 
 # Compiler Config
 set(CMAKE_C_FLAGS "-Wall -Wextra -Wpedantic")
 set(CMAKE_C_FLAGS_DEBUG "-g")
 set(CMAKE_C_FLAGS_RELEASE "-03")
+
 
 # Input Path
 link_directories(${LIB_DIR})
@@ -34,12 +40,15 @@ include_directories(${INCS})
 # Output Path
 set(LIBRARY_OUTPUT_PATH ${LIB_DIR})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BIN_DIR})
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+
 # Other
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 if(NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE Release)
+  set(CMAKE_BUILD_TYPEx Release)
 endif()
+
 
 # Output Executable
 set (SOURCE_FILES
